@@ -1,0 +1,88 @@
+{
+  "directions": [
+    {
+      "id": "AX",
+      "name_uz": "Axborot xavfsizligi",
+      "name_en": "Information Security",
+      "code": "60610200"
+    },
+    {
+      "id": "KI",
+      "name_uz": "Kompyuter injiniringi",
+      "name_en": "Computer Engineering",
+      "code": "60610300"
+    },
+    {
+      "id": "ATT",
+      "name_uz": "Axborot tizimlari va texnologiyalari",
+      "name_en": "Information Systems and Technologies",
+      "code": "60610100"
+    },
+    {
+      "id": "DT",
+      "name_uz": "Axborot texnologiyalarining dasturiy ta'minoti",
+      "name_en": "Software Engineering for IT",
+      "code": "60610800"
+    },
+    {
+      "id": "KT",
+      "name_uz": "Axborot-kommunikatsiya texnologiyalari sohasida kasb ta'limi",
+      "name_en": "Vocational Education in ICT",
+      "code": "60611300"
+    },
+    {
+      "id": "MAG",
+      "name_uz": "Kompyuter tizimlari va ularning dasturiy ta'minoti",
+      "name_en": "Computer Systems & Software",
+      "code": "70610201"
+    }
+  ],
+  "groups": [
+    {
+      "id": "MAG-11",
+      "directionId": "MAG",
+      "name": "MAG-11"
+    },
+    {
+      "id": "30A-22",
+      "directionId": "ATT",
+      "name": "30a-22"
+    },
+    {
+      "id": "30A-23",
+      "directionId": "ATT",
+      "name": "30a-23"
+    },
+    {
+      "id": "29A-23",
+      "directionId": "AX",
+      "name": "29a-23"
+    }
+  ],
+  "schedules": {
+    "30A-22": {
+      "monday": [],
+      "tuesday": [],
+      "wednesday": [],
+      "thursday": [],
+      "friday": [],
+      "saturday": []
+    },
+    "30A-23": {
+      "monday": [],
+      "tuesday": [],
+      "wednesday": [],
+      "thursday": [],
+      "friday": [],
+      "saturday": []
+    },
+    "29A-23": {
+      "monday": [],
+      "tuesday": [],
+      "wednesday": [],
+      "thursday": [],
+      "friday": [],
+      "saturday": []
+    }
+  }
+}
