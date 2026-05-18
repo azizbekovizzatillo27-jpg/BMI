@@ -68,9 +68,14 @@ export default function Navbar() {
     { path: '/staff', label: t('nav.staff') },
     { path: '/programs', label: t('nav.programs') },
     { path: '/schedule', label: t('nav.schedule') },
-    { path: '/news', label: t('nav.news') },
-    { path: '/research', label: t('nav.research') },
-    { path: '/gallery', label: t('nav.gallery') },
+    { 
+      label: t('nav.press'),
+      dropdown: [
+        { path: '/news', label: t('nav.news') },
+        { path: '/research', label: t('nav.research') },
+        { path: '/gallery', label: t('nav.gallery') }
+      ]
+    },
     { path: '/contact', label: t('nav.contact') },
   ];
 
@@ -123,21 +128,56 @@ export default function Navbar() {
 
             {/* Desktop Links */}
             <ul className="navbar-links">
-              {navLinks.map(({ path, label }) => (
-                <li key={path}>
-                  <Link
-                    to={path}
-                    className={`navbar-link ${location.pathname === path ? 'active' : ''}`}
-                    style={{
-                      color: !scrolled
-                        ? location.pathname === path ? '#60a5fa' : 'rgba(255,255,255,0.9)'
-                        : undefined
-                    }}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                if (link.dropdown) {
+                  const hasActiveChild = link.dropdown.some(sub => location.pathname === sub.path);
+                  return (
+                    <li key={link.label} className="nav-dropdown">
+                      <button
+                        className={`navbar-link dropdown-toggle ${hasActiveChild ? 'active' : ''}`}
+                        style={{
+                          background: 'none', border: 'none', cursor: 'pointer',
+                          display: 'flex', alignItems: 'center', gap: 4,
+                          color: !scrolled
+                            ? hasActiveChild ? '#60a5fa' : 'rgba(255,255,255,0.9)'
+                            : undefined
+                        }}
+                      >
+                        {link.label}
+                        <HiOutlineChevronDown style={{ fontSize: '0.75rem', transform: 'translateY(1px)' }} />
+                      </button>
+                      <ul className="nav-dropdown-menu">
+                        {link.dropdown.map(sub => (
+                          <li key={sub.path}>
+                            <Link
+                              to={sub.path}
+                              className={`dropdown-item ${location.pathname === sub.path ? 'active' : ''}`}
+                            >
+                              <NavIcon path={sub.path} /> {sub.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
+                      style={{
+                        color: !scrolled
+                          ? location.pathname === link.path ? '#60a5fa' : 'rgba(255,255,255,0.9)'
+                          : undefined
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Controls */}
@@ -223,16 +263,41 @@ export default function Navbar() {
               style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-primary)' }}
             ><HiOutlineXMark /></button>
           </div>
-          {navLinks.map(({ path, label }) => (
-            <Link
-              key={path}
-              to={path}
-              className={`admin-nav-item ${location.pathname === path ? 'active' : ''}`}
-              style={{ color: location.pathname === path ? '#60a5fa' : 'var(--text-secondary)' }}
-            >
-              <NavIcon path={path} /> {label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            if (link.dropdown) {
+              return (
+                <div key={link.label} style={{ display: 'flex', flexDirection: 'column', gap: 2, margin: '8px 0' }}>
+                  <div style={{
+                    padding: '8px 16px', fontSize: '0.7rem', fontWeight: 800,
+                    textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em'
+                  }}>
+                    {link.label}
+                  </div>
+                  {link.dropdown.map(sub => (
+                    <Link
+                      key={sub.path}
+                      to={sub.path}
+                      className={`admin-nav-item ${location.pathname === sub.path ? 'active' : ''}`}
+                      style={{ color: location.pathname === sub.path ? '#60a5fa' : 'var(--text-secondary)', paddingLeft: '32px' }}
+                    >
+                      <NavIcon path={sub.path} /> {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`admin-nav-item ${location.pathname === link.path ? 'active' : ''}`}
+                style={{ color: location.pathname === link.path ? '#60a5fa' : 'var(--text-secondary)' }}
+              >
+                <NavIcon path={link.path} /> {link.label}
+              </Link>
+            );
+          })}
           <div style={{ marginTop: 'var(--space-6)', borderTop: '1px solid var(--border-color)', paddingTop: 'var(--space-6)' }}>
             {user && (
               <button onClick={handleLogout} className="btn btn-ghost w-full" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
