@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { scheduleAPI } from '../../services/api';
 import { useApp } from '../../context/AppContext';
 import ConfirmModal from './ConfirmModal';
+import { HiOutlinePlus, HiOutlineTrash, HiOutlineCalendar } from 'react-icons/hi2';
 
 export default function AdminSchedule() {
     const { addToast, lang } = useApp();
@@ -231,8 +232,8 @@ export default function AdminSchedule() {
                                         </div>
                                     ) : (
                                         <div className="flex flex-col gap-4">
-                                            {schedule[day].map((lesson, idx) => (
-                                                <div key={idx} className="grid grid-cols-1 sm:grid-cols-5 gap-3 p-4 bg-secondary rounded-2xl border border-color items-center" style={{ background: 'var(--bg-primary)', borderColor: 'var(--border-color)' }}>
+                                             {schedule[day].map((lesson, idx) => (
+                                                <div key={idx} className="grid grid-cols-1 sm:grid-cols-6 gap-3 p-4 bg-secondary rounded-2xl border border-color items-center" style={{ background: 'var(--bg-primary)', borderColor: 'var(--border-color)' }}>
                                                     <div className="sm:col-span-1">
                                                         <p className="text-[10px] font-bold text-muted uppercase mb-1">Vaqt</p>
                                                         <input className="w-full" type="text" value={lesson.time} onChange={(e) => handleUpdateLesson(day, idx, 'time', e.target.value)} placeholder="08:30-10:00" style={{ padding: '6px 10px', fontSize: '0.8rem', borderRadius: 8, background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }} />
@@ -240,6 +241,10 @@ export default function AdminSchedule() {
                                                     <div className="sm:col-span-2">
                                                         <p className="text-[10px] font-bold text-muted uppercase mb-1">Fan</p>
                                                         <input className="w-full" type="text" value={lesson.subject} onChange={(e) => handleUpdateLesson(day, idx, 'subject', e.target.value)} placeholder="Fan nomi" style={{ padding: '6px 10px', fontSize: '0.8rem', borderRadius: 8, background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }} />
+                                                    </div>
+                                                    <div className="sm:col-span-1">
+                                                        <p className="text-[10px] font-bold text-muted uppercase mb-1">O'qituvchi</p>
+                                                        <input className="w-full" type="text" value={lesson.teacher || ''} onChange={(e) => handleUpdateLesson(day, idx, 'teacher', e.target.value)} placeholder="O'qituvchi" style={{ padding: '6px 10px', fontSize: '0.8rem', borderRadius: 8, background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }} />
                                                     </div>
                                                     <div className="sm:col-span-1">
                                                         <p className="text-[10px] font-bold text-muted uppercase mb-1">Xona</p>
