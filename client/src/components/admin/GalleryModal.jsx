@@ -69,11 +69,11 @@ export default function GalleryModal({ isOpen, onClose, onSuccess, addToast }) {
           </div>
           <div>
             <label className="text-xs font-bold text-muted uppercase mb-2 block">Описание (RU)</label>
-            <input required className="input w-full" value={formData.title_ru} onChange={e => setFormData({ ...formData, title_ru: e.target.value })} />
+            <input className="input w-full" value={formData.title_ru} onChange={e => setFormData({ ...formData, title_ru: e.target.value })} />
           </div>
           <div>
             <label className="text-xs font-bold text-muted uppercase mb-2 block">Description (EN)</label>
-            <input required className="input w-full" value={formData.title_en} onChange={e => setFormData({ ...formData, title_en: e.target.value })} />
+            <input className="input w-full" value={formData.title_en} onChange={e => setFormData({ ...formData, title_en: e.target.value })} />
           </div>
           
           <div>

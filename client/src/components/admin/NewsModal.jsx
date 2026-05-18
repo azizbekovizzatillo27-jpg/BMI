@@ -110,7 +110,6 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
             <div>
               <label className="text-xs font-bold text-muted uppercase mb-2 block">Заголовок (RU)</label>
               <input
-                required
                 className="input w-full"
                 value={formData.title_ru}
                 onChange={e => setFormData({ ...formData, title_ru: e.target.value })}
@@ -120,7 +119,6 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
             <div>
               <label className="text-xs font-bold text-muted uppercase mb-2 block">Title (EN)</label>
               <input
-                required
                 className="input w-full"
                 value={formData.title_en}
                 onChange={e => setFormData({ ...formData, title_en: e.target.value })}
@@ -170,7 +168,6 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
           <div>
             <label className="text-xs font-bold text-muted uppercase mb-2 block">Текст (RU)</label>
             <textarea
-              required
               className="input w-full"
               style={{ minHeight: '100px' }}
               value={formData.content_ru}
@@ -182,7 +179,6 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
           <div>
             <label className="text-xs font-bold text-muted uppercase mb-2 block">Text (EN)</label>
             <textarea
-              required
               className="input w-full"
               style={{ minHeight: '100px' }}
               value={formData.content_en}

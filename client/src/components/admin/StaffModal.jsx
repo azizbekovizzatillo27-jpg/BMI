@@ -118,11 +118,11 @@ export default function StaffModal({ isOpen, onClose, staffItem, onSuccess, addT
                 </div>
                 <div>
                   <label className="text-xs font-bold text-muted uppercase mb-2 block">Ф.И.О (RU)</label>
-                  <input required className="input w-full" value={formData.name_ru} onChange={e => setFormData({ ...formData, name_ru: e.target.value })} />
+                  <input className="input w-full" value={formData.name_ru} onChange={e => setFormData({ ...formData, name_ru: e.target.value })} />
                 </div>
                 <div>
                   <label className="text-xs font-bold text-muted uppercase mb-2 block">Full Name (EN)</label>
-                  <input required className="input w-full" value={formData.name_en} onChange={e => setFormData({ ...formData, name_en: e.target.value })} />
+                  <input className="input w-full" value={formData.name_en} onChange={e => setFormData({ ...formData, name_en: e.target.value })} />
                 </div>
              </div>
              <div>
@@ -152,11 +152,11 @@ export default function StaffModal({ isOpen, onClose, staffItem, onSuccess, addT
             </div>
             <div>
               <label className="text-xs font-bold text-muted uppercase mb-2 block">Должность (RU)</label>
-              <input required className="input w-full" value={formData.position_ru} onChange={e => setFormData({ ...formData, position_ru: e.target.value })} />
+              <input className="input w-full" value={formData.position_ru} onChange={e => setFormData({ ...formData, position_ru: e.target.value })} />
             </div>
             <div>
               <label className="text-xs font-bold text-muted uppercase mb-2 block">Position (EN)</label>
-              <input required className="input w-full" value={formData.position_en} onChange={e => setFormData({ ...formData, position_en: e.target.value })} />
+              <input className="input w-full" value={formData.position_en} onChange={e => setFormData({ ...formData, position_en: e.target.value })} />
             </div>
           </div>
 

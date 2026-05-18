@@ -19,14 +19,14 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  req.body = await autoTranslateObject(req.body, ['title', 'type', 'duration', 'desc']);
+  req.body = await autoTranslateObject(req.body, ['name', 'duration', 'description', 'tuition']);
   const newItem = { id: Date.now(), ...req.body };
   mockDB.programs.push(newItem);
   res.status(201).json(newItem);
 });
 
 router.put('/:id', async (req, res) => {
-  req.body = await autoTranslateObject(req.body, ['title', 'type', 'duration', 'desc']);
+  req.body = await autoTranslateObject(req.body, ['name', 'duration', 'description', 'tuition']);
   const id = parseInt(req.params.id);
   const index = mockDB.programs.findIndex(p => p.id === id);
   if (index === -1) return res.status(404).json({ error: 'Topilmadi' });

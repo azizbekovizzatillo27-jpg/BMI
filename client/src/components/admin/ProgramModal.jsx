@@ -108,11 +108,11 @@ export default function ProgramModal({ isOpen, onClose, program, onSuccess, addT
             </div>
             <div className="form-group">
               <label className="form-label">Nomi (RU)</label>
-              <input className="form-input" value={formData.name_ru} onChange={e => setFormData({...formData, name_ru: e.target.value})} required />
+              <input className="form-input" value={formData.name_ru} onChange={e => setFormData({...formData, name_ru: e.target.value})} />
             </div>
             <div className="form-group">
               <label className="form-label">Nomi (EN)</label>
-              <input className="form-input" value={formData.name_en} onChange={e => setFormData({...formData, name_en: e.target.value})} required />
+              <input className="form-input" value={formData.name_en} onChange={e => setFormData({...formData, name_en: e.target.value})} />
             </div>
           </div>
 
@@ -123,11 +123,11 @@ export default function ProgramModal({ isOpen, onClose, program, onSuccess, addT
             </div>
             <div className="form-group">
               <label className="form-label">Muddati (RU)</label>
-              <input className="form-input" value={formData.duration_ru} onChange={e => setFormData({...formData, duration_ru: e.target.value})} placeholder="4 года" required />
+              <input className="form-input" value={formData.duration_ru} onChange={e => setFormData({...formData, duration_ru: e.target.value})} placeholder="4 года" />
             </div>
             <div className="form-group">
               <label className="form-label">Muddati (EN)</label>
-              <input className="form-input" value={formData.duration_en} onChange={e => setFormData({...formData, duration_en: e.target.value})} placeholder="4 years" required />
+              <input className="form-input" value={formData.duration_en} onChange={e => setFormData({...formData, duration_en: e.target.value})} placeholder="4 years" />
             </div>
           </div>
 
