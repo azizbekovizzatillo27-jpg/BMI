@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
-import { galleryAPI } from '../services/api';
+import { galleryAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineHome, 
   HiOutlineChevronRight, 
@@ -70,7 +70,7 @@ export default function GalleryPage() {
             <div className="gallery-grid animate-fadeInUp">
               {images.map(item => (
                 <div key={item.id} className="gallery-item" onClick={() => setLightboxImage(item)}>
-                  <img src={item.image} alt={item[`title_${lang}`]} loading="lazy" />
+                  <img src={getImageUrl(item.image)} alt={item[`title_${lang}`]} loading="lazy" />
                   <div className="gallery-overlay">
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <span className="badge badge-gold mb-2" style={{ width: 'fit-content' }}>
@@ -110,7 +110,7 @@ export default function GalleryPage() {
                <HiXMark />
              </button>
             <img
-              src={lightboxImage.image}
+              src={getImageUrl(lightboxImage.image)}
               alt={lightboxImage[`title_${lang}`]}
               style={{ width: '100%', display: 'block', borderRadius: 'var(--radius-2xl)' }}
             />

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../services/api';
 import { 
   HiOutlineHome, 
   HiOutlineChevronRight, 
@@ -173,7 +174,7 @@ export default function AboutPage() {
             <div className="card" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
               <div style={{ height: '300px', overflow: 'hidden' }}>
                 <img 
-                  src="/uploads/rector.jpg" 
+                  src={getImageUrl('/uploads/rector.jpg')} 
                   alt="Rector" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800'; }}
@@ -194,7 +195,7 @@ export default function AboutPage() {
             <div className="card" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
               <div style={{ height: '300px', overflow: 'hidden' }}>
                 <img 
-                  src="/uploads/mudir.jpg" 
+                  src={getImageUrl('/uploads/mudir.jpg')} 
                   alt="HOD" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800'; }}

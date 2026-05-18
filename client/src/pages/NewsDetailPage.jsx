@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
-import { newsAPI } from '../services/api';
+import { newsAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineHome, 
   HiOutlineChevronRight, 
@@ -76,7 +76,7 @@ export default function NewsDetailPage() {
 
               <div style={{ marginBottom: 'var(--space-10)', borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
                 <img
-                  src={news.image}
+                  src={getImageUrl(news.image)}
                   alt={news[`title_${lang}`]}
                   style={{ width: '100%', height: 'auto', maxHeight: '500px', objectFit: 'cover' }}
                   onError={(e) => { e.target.src = 'https://via.placeholder.com/1200x800?text=No+Image'; }}
@@ -114,7 +114,7 @@ export default function NewsDetailPage() {
                   <Link key={item.id} to={`/news/${item.id}`} style={{ textDecoration: 'none' }}>
                     <div className="card" style={{ overflow: 'hidden' }}>
                       <img
-                        src={item.image}
+                        src={getImageUrl(item.image)}
                         alt={item[`title_${lang}`]}
                         style={{ width: '100%', height: '120px', objectFit: 'cover' }}
                       />

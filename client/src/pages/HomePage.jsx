@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
-import { newsAPI, statsAPI } from '../services/api';
+import { newsAPI, statsAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineAcademicCap, 
   HiOutlineBeaker, 
@@ -41,7 +41,7 @@ const SliderItem = ({ item, lang }) => (
     position: 'relative', minHeight: 500, borderRadius: 'var(--radius-2xl)',
     overflow: 'hidden', display: 'flex', alignItems: 'flex-end'
   }}>
-    <img src={item.image} alt={item[`title_${lang}`]}
+    <img src={getImageUrl(item.image)} alt={item[`title_${lang}`]}
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
     <div style={{
       position: 'absolute', inset: 0,
@@ -328,7 +328,7 @@ export default function HomePage() {
                 {news.slice(0, 3).map(item => (
                   <div key={item.id} className="news-card">
                     <div className="news-img-wrapper">
-                      <img src={item.image} alt={item[`title_${lang}`]} className="news-card-img" />
+                      <img src={getImageUrl(item.image)} alt={item[`title_${lang}`]} className="news-card-img" />
                     </div>
                     <div className="news-card-body">
                       <div className="news-meta">

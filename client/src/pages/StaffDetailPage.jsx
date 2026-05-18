@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
-import { staffAPI } from '../services/api';
+import { staffAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineHome, 
   HiOutlineChevronRight, 
@@ -62,7 +62,7 @@ export default function StaffDetailPage() {
               <div className="card" style={{ padding: 'var(--space-10)', textAlign: 'center' }}>
                 {person.photo ? (
                   <img
-                    src={person.photo}
+                    src={getImageUrl(person.photo)}
                     alt={person[`name_${lang}`]}
                     style={{
                       width: 180, height: 180, borderRadius: '50%', objectFit: 'cover',

@@ -7,6 +7,16 @@ const api = axios.create({
   timeout: 10000,
 });
 
+export const getImageUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  const cleanUrl = url.startsWith('/') ? url : `/${url}`;
+  const apiBase = import.meta.env.VITE_API_URL || '';
+  return `${apiBase}${cleanUrl}`;
+};
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {

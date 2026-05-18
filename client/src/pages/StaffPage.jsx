@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
-import { staffAPI } from '../services/api';
+import { staffAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineHome, 
   HiOutlineChevronRight, 
@@ -109,7 +109,7 @@ export default function StaffPage() {
                             <div className="relative mb-6" style={{ position: 'relative', flexShrink: 0, margin: '0 auto' }}>
                               <div className="badge badge-gold" style={{ position: 'absolute', top: '-12px', right: '-12px', zIndex: 2 }}>{t('staff.rector')}</div>
                               <img 
-                                src={rector.photo} 
+                                src={getImageUrl(rector.photo)} 
                                 alt={rector[`name_${lang}`]} 
                                 style={{ width: '200px', height: '200px', borderRadius: '50%', objectFit: 'cover', border: '4px solid white', boxShadow: 'var(--shadow-md)' }}
                                 onError={e => e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(rector[`name_${lang}`])}&background=2563eb&color=fff&size=400`}
@@ -174,7 +174,7 @@ export default function StaffPage() {
                             <div className="relative mb-6" style={{ position: 'relative', flexShrink: 0, margin: '0 auto' }}>
                               <div className="badge badge-blue" style={{ position: 'absolute', top: '-12px', right: '-12px', zIndex: 2 }}>{t('staff.hod')}</div>
                               <img 
-                                src={leader.photo} 
+                                src={getImageUrl(leader.photo)} 
                                 alt={leader[`name_${lang}`]} 
                                 style={{ width: '200px', height: '200px', borderRadius: '50%', objectFit: 'cover', border: '4px solid white', boxShadow: 'var(--shadow-md)' }}
                                 onError={e => e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(leader[`name_${lang}`])}&background=2563eb&color=fff&size=400`}
@@ -225,7 +225,7 @@ export default function StaffPage() {
                       <div className="relative mb-6">
                         {person.photo ? (
                           <img
-                            src={person.photo}
+                            src={getImageUrl(person.photo)}
                             alt={person[`name_${lang}`]}
                             className="w-24 h-24 rounded-full object-cover shadow-sm border-2 border-primary-100"
                             style={{ width: '96px', height: '96px' }}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { useTranslation } from '../i18n/translations';
-import { newsAPI } from '../services/api';
+import { newsAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineHome, 
   HiOutlineChevronRight, 
@@ -72,7 +72,7 @@ export default function NewsPage() {
                 <div key={item.id} className="news-card animate-fadeInUp">
                   <div className="news-img-wrapper">
                     <img
-                      src={item.image}
+                      src={getImageUrl(item.image)}
                       alt={item[`title_${lang}`]}
                       className="news-card-img"
                       onError={(e) => { e.target.src = 'https://via.placeholder.com/800x600?text=No+Image'; }}
