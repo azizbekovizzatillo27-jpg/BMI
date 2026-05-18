@@ -201,6 +201,9 @@ export default function Navbar() {
               <button
                 className="navbar-toggle"
                 onClick={() => setMobileOpen(!mobileOpen)}
+                style={{
+                  color: !scrolled ? 'white' : 'var(--text-primary)'
+                }}
               >
                 {mobileOpen ? <HiOutlineXMark /> : <HiOutlineBars3 />}
               </button>

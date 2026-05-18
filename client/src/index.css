@@ -1892,7 +1892,15 @@ img {
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 1024px) {
+@media (max-width: 1150px) {
+  .navbar-links {
+    display: none !important;
+  }
+
+  .navbar-toggle {
+    display: flex !important;
+  }
+
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1938,14 +1946,6 @@ img {
   .hero-actions {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .navbar-links {
-    display: none;
-  }
-
-  .navbar-toggle {
-    display: flex;
   }
 
   .admin-sidebar {
