@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { newsAPI, staffAPI, contactAPI, statsAPI, galleryAPI, programsAPI, researchAPI, authAPI } from '../services/api';
+import { newsAPI, staffAPI, contactAPI, statsAPI, galleryAPI, programsAPI, researchAPI, authAPI, getImageUrl } from '../services/api';
 import { 
   HiOutlineChartBar, 
   HiOutlineNewspaper, 
@@ -557,7 +557,7 @@ export default function AdminPage() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {gallery.map(img => (
                     <div key={img.id} className="group relative rounded-2xl overflow-hidden aspect-video shadow-md border border-color" style={{ borderColor: 'var(--border-color)' }}>
-                      <img src={img.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <img src={getImageUrl(img.image)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-4 text-center">
                         <p className="text-white text-xs font-bold mb-3">{img.title_uz}</p>
                         <button onClick={() => handleDeleteGallery(img.id)} className="btn btn-primary btn-sm bg-red-600 hover:bg-red-700 border-none">

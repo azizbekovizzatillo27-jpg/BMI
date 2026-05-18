@@ -46,7 +46,7 @@ export default function GalleryModal({ isOpen, onClose, onSuccess, addToast }) {
       setImage(null);
       setPreview('');
     } catch (err) {
-      addToast('Yuklashda xatolik yuz berdi', 'error');
+      addToast('Yuklashda xatolik yuz berdi: ' + (err.response?.data?.error || err.message), 'error');
     } finally {
       setLoading(false);
     }
