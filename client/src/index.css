@@ -687,39 +687,69 @@ img {
 .navbar-links {
   display: flex;
   list-style: none;
-  gap: 2px;
+  gap: 1.5rem; /* Premium, generous spacing */
   align-items: center;
   flex: 1;
   justify-content: center;
+  margin: 0 2rem;
 }
 
 .navbar-link {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 10px;
-  /* Tighter padding for links */
-  border-radius: var(--radius-md);
-  font-size: 0.82rem;
-  /* Optimized font size */
+  gap: 6px;
+  padding: 8px 18px; /* Comfortable touch target padding */
+  border-radius: 9999px; /* World-class soft pill shape */
+  font-size: 0.92rem; /* Clean, modern scale */
   font-weight: 600;
-  color: var(--text-secondary);
-  transition: all var(--transition-fast);
+  color: rgba(255, 255, 255, 0.8) !important; /* Elegant semi-transparent white when transparent */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   white-space: nowrap;
   letter-spacing: -0.01em;
+  text-decoration: none;
 }
 
-.navbar-link:hover,
+/* Transparent mode active/hover (dark header backgrounds) */
+.navbar-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
 .navbar-link.active {
-  color: var(--primary-600);
-  background: var(--primary-50);
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-[data-theme="dark"] .navbar-link:hover,
-[data-theme="dark"] .navbar-link.active {
-  color: var(--primary-400);
-  background: rgba(37, 99, 235, 0.1);
+/* Scrolled mode (light/dark themed backgrounds) */
+.navbar.scrolled .navbar-link {
+  color: var(--text-secondary) !important;
+}
+
+.navbar.scrolled .navbar-link:hover {
+  color: var(--primary-600) !important;
+  background: var(--primary-50) !important;
+}
+
+.navbar.scrolled .navbar-link.active {
+  color: var(--primary-700) !important;
+  background: rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Dark theme active/hover states when scrolled */
+[data-theme="dark"] .navbar.scrolled .navbar-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme="dark"] .navbar.scrolled .navbar-link:hover {
+  color: var(--primary-400) !important;
+  background: rgba(96, 165, 250, 0.1) !important;
+}
+
+[data-theme="dark"] .navbar.scrolled .navbar-link.active {
+  color: #ffffff !important;
+  background: rgba(96, 165, 250, 0.18) !important;
 }
 
 /* Navbar Dropdown styling */

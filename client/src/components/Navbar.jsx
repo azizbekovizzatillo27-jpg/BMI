@@ -137,10 +137,6 @@ export default function Navbar() {
                         className={`navbar-link dropdown-toggle ${hasActiveChild ? 'active' : ''}`}
                         style={{
                           background: 'none', border: 'none', cursor: 'pointer',
-                          display: 'flex', alignItems: 'center', gap: 4,
-                          color: !scrolled
-                            ? hasActiveChild ? '#60a5fa' : 'rgba(255,255,255,0.9)'
-                            : undefined
                         }}
                       >
                         {link.label}
@@ -167,11 +163,6 @@ export default function Navbar() {
                     <Link
                       to={link.path}
                       className={`navbar-link ${location.pathname === link.path ? 'active' : ''}`}
-                      style={{
-                        color: !scrolled
-                          ? location.pathname === link.path ? '#60a5fa' : 'rgba(255,255,255,0.9)'
-                          : undefined
-                      }}
                     >
                       {link.label}
                     </Link>
