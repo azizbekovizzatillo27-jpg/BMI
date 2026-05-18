@@ -6,6 +6,8 @@ const passport = require('../config/passport');
 const authMiddleware = require('../middleware/auth');
 const adminOnly = require('../middleware/adminOnly');
 
+const JWT_SECRET = process.env.JWT_SECRET || 'namdtu-att-jwt-secret-key-2026';
+
 // Mock users for demo (no DB required)
 const mockUsers = [
   { id: 1, name: 'Admin User', email: 'admin@namdtu.uz', password: bcrypt.hashSync('admin123', 10), role: 'admin' },
@@ -27,7 +29,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = { id: nextId++, name, email, password: hashedPassword, role: 'student', studentId };
     mockUsers.push(newUser);
-    const token = jwt.sign({ id: newUser.id, email: newUser.email, role: newUser.role, name: newUser.name }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: newUser.id, email: newUser.email, role: newUser.role, name: newUser.name }, JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, user: { id: newUser.id, name: newUser.name, email: newUser.email, role: newUser.role } });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -46,7 +48,7 @@ router.post('/login', async (req, res) => {
     if (!valid) {
       return res.status(400).json({ error: 'Email yoki parol noto\'g\'ri' });
     }
-    const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -92,7 +94,7 @@ router.post('/social-login', async (req, res) => {
 
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role, name: user.name },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       { expiresIn: '7d' }
     );
 
@@ -177,7 +179,7 @@ router.get('/google/callback',
       // Generate JWT
       const token = jwt.sign(
         { id: user.id, email: user.email, role: user.role, name: user.name },
-        process.env.JWT_SECRET,
+        JWT_SECRET,
         { expiresIn: '7d' }
       );
       
