@@ -27,10 +27,6 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user) {
-      addToast(t('contact.err_login'), 'error');
-      return;
-    }
     setLoading(true);
     try {
       await contactAPI.send(formData);

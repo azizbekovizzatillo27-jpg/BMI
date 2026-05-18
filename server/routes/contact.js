@@ -9,19 +9,38 @@ const mockDB = require('../data/mockDB');
 let messages = mockDB.messages;
 let nextId = Math.max(...messages.map(m => m.id), 0) + 1;
 
-// POST send message (Requires Login)
-router.post('/', auth, (req, res) => {
+// POST send message (Open to Public / Optional Login)
+router.post('/', (req, res) => {
   const { name, email, subject, message } = req.body;
   
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Barcha maydonlar majburiy' });
   }
 
+  // Parse token optionally if available to link logged-in user
+  let userId = null;
+  let userEmail = email;
+
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (token) {
+    try {
+      const jwt = require('jsonwebtoken');
+      const JWT_SECRET = process.env.JWT_SECRET || 'namdtu-att-jwt-secret-key-2026';
+      const decoded = jwt.verify(token, JWT_SECRET);
+      if (decoded) {
+        userId = decoded.id;
+        userEmail = decoded.email || email;
+      }
+    } catch (err) {
+      // Ignore token verification errors for public guests
+    }
+  }
+
   const newMsg = { 
     id: nextId++, 
-    userId: req.user.id, 
+    userId, 
     name, 
-    email: req.user.email || email, 
+    email: userEmail, 
     subject: subject || 'Yangi xabar', 
     message, 
     created_at: new Date().toISOString(), 
