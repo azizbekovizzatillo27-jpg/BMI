@@ -96,33 +96,15 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div className="grid-3">
+          <div className="grid-1">
             <div>
-              <label className="text-xs font-bold text-muted uppercase mb-2 block">Sarlavha (UZ)</label>
+              <label className="text-xs font-bold text-muted uppercase mb-2 block">Sarlavha (UZ) <span style={{color: 'var(--primary)', textTransform: 'none', marginLeft: '8px'}}>* (Ingliz va Rus tillariga avtomatik tarjima qilinadi)</span></label>
               <input
                 required
                 className="input w-full"
                 value={formData.title_uz}
                 onChange={e => setFormData({ ...formData, title_uz: e.target.value })}
                 placeholder="O'zbekcha sarlavha"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-bold text-muted uppercase mb-2 block">Заголовок (RU)</label>
-              <input
-                className="input w-full"
-                value={formData.title_ru}
-                onChange={e => setFormData({ ...formData, title_ru: e.target.value })}
-                placeholder="Заголовок на русском"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-bold text-muted uppercase mb-2 block">Title (EN)</label>
-              <input
-                className="input w-full"
-                value={formData.title_en}
-                onChange={e => setFormData({ ...formData, title_en: e.target.value })}
-                placeholder="English title"
               />
             </div>
           </div>
@@ -154,7 +136,7 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
           </div>
 
           <div>
-            <label className="text-xs font-bold text-muted uppercase mb-2 block">Matn (UZ)</label>
+            <label className="text-xs font-bold text-muted uppercase mb-2 block">Matn (UZ) <span style={{color: 'var(--primary)', textTransform: 'none', marginLeft: '8px'}}>* (Ingliz va Rus tillariga avtomatik tarjima qilinadi)</span></label>
             <textarea
               required
               className="input w-full"
@@ -162,28 +144,6 @@ export default function NewsModal({ isOpen, onClose, newsItem, onSuccess, addToa
               value={formData.content_uz}
               onChange={e => setFormData({ ...formData, content_uz: e.target.value })}
               placeholder="O'zbekcha to'liq matn..."
-            />
-          </div>
-
-          <div>
-            <label className="text-xs font-bold text-muted uppercase mb-2 block">Текст (RU)</label>
-            <textarea
-              className="input w-full"
-              style={{ minHeight: '100px' }}
-              value={formData.content_ru}
-              onChange={e => setFormData({ ...formData, content_ru: e.target.value })}
-              placeholder="Полный текст на русском..."
-            />
-          </div>
-
-          <div>
-            <label className="text-xs font-bold text-muted uppercase mb-2 block">Text (EN)</label>
-            <textarea
-              className="input w-full"
-              style={{ minHeight: '100px' }}
-              value={formData.content_en}
-              onChange={e => setFormData({ ...formData, content_en: e.target.value })}
-              placeholder="Full text in English..."
             />
           </div>
 

@@ -39,16 +39,16 @@ api.interceptors.response.use(
 export const newsAPI = {
   getAll: (params) => api.get('/news', { params }),
   getById: (id) => api.get(`/news/${id}`),
-  create: (data) => api.post('/news', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
-  update: (id, data) => api.put(`/news/${id}`, data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  create: (data) => api.post('/news', data),
+  update: (id, data) => api.put(`/news/${id}`, data),
   delete: (id) => api.delete(`/news/${id}`),
 };
 
 export const staffAPI = {
   getAll: () => api.get('/staff'),
   getById: (id) => api.get(`/staff/${id}`),
-  create: (data) => api.post('/staff', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
-  update: (id, data) => api.put(`/staff/${id}`, data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  create: (data) => api.post('/staff', data),
+  update: (id, data) => api.put(`/staff/${id}`, data),
   delete: (id) => api.delete(`/staff/${id}`),
 };
 
@@ -78,7 +78,7 @@ export const researchAPI = {
 
 export const galleryAPI = {
   getAll: (params) => api.get('/gallery', { params }),
-  create: (data) => api.post('/gallery', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  create: (data) => api.post('/gallery', data),
   delete: (id) => api.delete(`/gallery/${id}`),
 };
 
@@ -93,7 +93,7 @@ export const studentsAPI = {
   getMaterials: () => api.get('/students/materials'),
   getTheses: () => api.get('/students/theses'),
   getRequirements: () => api.get('/students/requirements'),
-  createMaterial: (data) => api.post('/students/materials', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  createMaterial: (data) => api.post('/students/materials', data),
   deleteMaterial: (id) => api.delete(`/students/materials/${id}`),
   createThesis: (data) => api.post('/students/theses', data),
   deleteThesis: (id) => api.delete(`/students/theses/${id}`),
