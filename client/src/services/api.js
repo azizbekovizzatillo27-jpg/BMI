@@ -101,6 +101,7 @@ export const studentsAPI = {
 
 export const statsAPI = {
   getAll: () => api.get('/stats'),
+  update: (data) => api.put('/stats', data),
 };
 
 export const authAPI = {

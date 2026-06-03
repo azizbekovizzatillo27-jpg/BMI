@@ -32,6 +32,7 @@ import ProgramModal from '../components/admin/ProgramModal';
 import ResearchModal from '../components/admin/ResearchModal';
 import ConfirmModal from '../components/admin/ConfirmModal';
 import AdminUsersModal from '../components/admin/AdminUsersModal';
+import StatsModal from '../components/admin/StatsModal';
 
 export default function AdminPage() {
   const { user, token, lang, addToast, logout, toggleTheme, theme } = useApp();
@@ -68,6 +69,7 @@ export default function AdminPage() {
   const [selectedResearch, setSelectedResearch] = useState(null);
 
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
 
   const [confirmConfig, setConfirmConfig] = useState({ isOpen: false, onConfirm: null, message: '' });
 
@@ -326,7 +328,14 @@ export default function AdminPage() {
           <div className="animate-slide-in">
             {/* DASHBOARD */}
             {activeTab === 'dashboard' && stats && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <>
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="font-bold text-lg text-muted">Asosiy ko'rsatkichlar</h3>
+                  <button onClick={() => setIsStatsModalOpen(true)} className="auth-submit-btn" style={{ padding: '8px 16px', borderRadius: 8, marginTop: 0, fontSize: '0.85rem', width: 'auto' }}>
+                    <HiOutlinePencilSquare style={{ marginRight: 8, display: 'inline' }} /> Statistikani tahrirlash
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { label: 'O\'qituvchilar', val: stats.teachers, icon: <HiOutlineUsers />, color: '#8b5cf6' },
                   { label: 'Ilmiy ishlar', val: stats.research_papers, icon: <HiOutlineDocumentText />, color: '#10b981' },
@@ -343,6 +352,7 @@ export default function AdminPage() {
                   </div>
                 ))}
               </div>
+            </>
             )}
 
             {/* TABLES (NEWS, STAFF, etc) */}
@@ -625,6 +635,13 @@ export default function AdminPage() {
         <AdminUsersModal 
             isOpen={isAdminModalOpen}
             onClose={() => setIsAdminModalOpen(false)}
+            onSuccess={fetchData}
+            addToast={addToast}
+        />
+        <StatsModal 
+            isOpen={isStatsModalOpen}
+            onClose={() => setIsStatsModalOpen(false)}
+            stats={stats}
             onSuccess={fetchData}
             addToast={addToast}
         />

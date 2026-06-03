@@ -157,4 +157,21 @@ INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@namdtu.uz', '$2a$10$YourHashedPasswordHere', 'admin')
 ON DUPLICATE KEY UPDATE name=name;
 
+-- Statistics table
+CREATE TABLE IF NOT EXISTS statistics (
+  id INT PRIMARY KEY DEFAULT 1,
+  students INT DEFAULT 1250,
+  teachers INT DEFAULT 35,
+  graduates INT DEFAULT 4500,
+  labs INT DEFAULT 8,
+  partners INT DEFAULT 12,
+  years_active INT DEFAULT 15,
+  programs INT DEFAULT 5,
+  research_papers INT DEFAULT 120,
+  news_count INT DEFAULT 45,
+  messages_count INT DEFAULT 15
+);
+
+INSERT IGNORE INTO statistics (id) VALUES (1);
+
 COMMIT;
