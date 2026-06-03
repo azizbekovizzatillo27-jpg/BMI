@@ -18,10 +18,15 @@ router.get('/', (req, res) => {
 
 router.post('/', auth, adminOnly, upload.single('image'), async (req, res) => {
   req.body = await autoTranslateObject(req.body, ['title']);
+  // req.file.path = Cloudinary URL; req.file.filename = local disk filename
+  const imageUrl = req.file
+    ? (req.file.path || `/uploads/${req.file.filename}`)
+    : (req.body.image || 'https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800');
+
   const newItem = {
     id: nextGalleryId++,
     ...req.body,
-    image: req.file ? `/uploads/${req.file.filename}` : (req.body.image || "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800"),
+    image: imageUrl,
     date: new Date().toISOString().split('T')[0]
   };
   galleryData.push(newItem);

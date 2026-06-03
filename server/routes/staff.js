@@ -28,7 +28,7 @@ router.post('/', auth, adminOnly, upload.single('photo'), async (req, res) => {
   const newItem = {
     id: nextStaffId++,
     ...req.body,
-    photo: req.file ? `/uploads/${req.file.filename}` : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800",
+    photo: req.file ? (req.file.path || `/uploads/${req.file.filename}`) : "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800",
     articles: parseInt(req.body.articles) || 0,
     experience: parseInt(req.body.experience) || 0
   };
@@ -47,7 +47,7 @@ router.put('/:id', auth, adminOnly, upload.single('photo'), async (req, res) => 
   const updatedItem = {
     ...staffData[idx],
     ...req.body,
-    photo: req.file ? `/uploads/${req.file.filename}` : staffData[idx].photo,
+    photo: req.file ? (req.file.path || `/uploads/${req.file.filename}`) : staffData[idx].photo,
     articles: parseInt(req.body.articles) || staffData[idx].articles,
     experience: parseInt(req.body.experience) || staffData[idx].experience
   };

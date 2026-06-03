@@ -40,7 +40,7 @@ router.post('/', auth, adminOnly, upload.single('image'), async (req, res) => {
     content_ru: req.body.content_ru,
     category,
     author: author || 'Admin',
-    image: req.file ? `/uploads/${req.file.filename}` : "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800",
+    image: req.file ? (req.file.path || `/uploads/${req.file.filename}`) : "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800",
     published_at: new Date().toISOString().split('T')[0],
     views: 0
   };
@@ -61,7 +61,7 @@ router.put('/:id', auth, adminOnly, upload.single('image'), async (req, res) => 
   const updatedNews = {
     ...newsData[idx],
     ...req.body,
-    image: req.file ? `/uploads/${req.file.filename}` : newsData[idx].image
+    image: req.file ? (req.file.path || `/uploads/${req.file.filename}`) : newsData[idx].image
   };
 
   newsData[idx] = updatedNews;
