@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const { auth, adminOnly } = require('../middleware/auth');
+const auth = require('../middleware/auth');
+const adminOnly = require('../middleware/adminOnly');
 
 // Get statistics
 router.get('/', async (req, res) => {
