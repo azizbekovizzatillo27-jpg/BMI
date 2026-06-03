@@ -63,6 +63,30 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'NamDTU ATT API is running' });
 });
 
+// Auto-run migrations for Russian language columns
+const db = require('./config/db');
+const fs = require('fs');
+const runMigrations = async () => {
+  try {
+    const sqlPath = path.join(__dirname, '../database/alter_tables.sql');
+    if (fs.existsSync(sqlPath)) {
+      const sqlCommands = fs.readFileSync(sqlPath, 'utf8').split(';').filter(cmd => cmd.trim());
+      for (let cmd of sqlCommands) {
+        try {
+          await db.query(cmd);
+        } catch (err) {
+           // Ignore duplicate column name errors if they already exist
+           if (err.code !== 'ER_DUP_FIELDNAME') console.error('Migration query info:', err.message);
+        }
+      }
+      console.log('✅ Database migrations checked/applied successfully.');
+    }
+  } catch (err) {
+    console.error('Migration error:', err);
+  }
+};
+runMigrations();
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
