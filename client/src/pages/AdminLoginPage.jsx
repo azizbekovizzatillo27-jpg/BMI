@@ -103,23 +103,7 @@ export default function AdminLoginPage() {
             </button>
           </form>
 
-          {/* Demo Access Info - Glass Style */}
-          <div className="demo-info-box">
-            <div className="demo-header">
-              <span className="pulse-dot"></span>
-              <h3>Boshqaruv Tizimi</h3>
-            </div>
-            <div className="demo-credentials">
-              <div className="cred-item">
-                <span className="label">Admin:</span>
-                <span className="value">admin@namdtu.uz</span>
-              </div>
-              <div className="cred-item">
-                <span className="label">Parol:</span>
-                <span className="value">admin123</span>
-              </div>
-            </div>
-          </div>
+
 
           <Link to="/" className="auth-back-link">
             <HiOutlineArrowLeft /> Saytga qaytish
